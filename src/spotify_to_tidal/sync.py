@@ -161,7 +161,7 @@ async def repeat_on_request_error(function, *args, remaining=5, **kwargs):
 async def _fetch_all_from_spotify_in_chunks(fetch_function: Callable) -> List[dict]:
     output = []
     results = fetch_function(0)
-    output.extend([item['track'] for item in results['items'] if item['track'] is not None])
+    output.extend([item['track'] for item in results['items'] if item.get('track') is not None])
 
     # Get all the remaining tracks in parallel
     if results['next']:
@@ -171,7 +171,7 @@ async def _fetch_all_from_spotify_in_chunks(fetch_function: Callable) -> List[di
             desc="Fetching additional data chunks"
         )
         for extra_result in extra_results:
-            output.extend([item['track'] for item in extra_result['items'] if item['track'] is not None])
+            output.extend([item['track'] for item in extra_result['items'] if item.get('track') is not None])
 
     return output
 

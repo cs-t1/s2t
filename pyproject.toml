@@ -13,13 +13,13 @@ dependencies = [
   "pyyaml~=6.0",
   "tqdm~=4.64",
   "sqlalchemy~=2.0",
-  "pytest~=8.0",
+  "pytest~=9.0",
   "pytest-mock~=3.8"
 ]
 
-[tools.setuptools.packages."spotify_to_tidal"]
-where = "src"
-include = "spotify_to_tidal*"
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["spotify_to_tidal*"]
 
 [project.scripts]
 spotify_to_tidal = "spotify_to_tidal.__main__:main"
